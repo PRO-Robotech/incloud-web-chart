@@ -71,8 +71,8 @@ oauth2-proxy:
     ssl-insecure-skip-verify: true
 
     # Scopes requested from the identity provider
-    # Uncomment and customize if you need specific claims (e.g., groups)
-    # scope: "openid email profile groups offline_access"
+    # Customize if you need specific claims (e.g., groups)
+    scope: "openid email profile groups offline_access"
 
     # Skip showing the provider login button; redirect directly to IDP
     # Enables seamless single sign-on experience
@@ -87,6 +87,14 @@ oauth2-proxy:
 
   service:
     portNumber: 80
+
+# --- Cluster ---------------------------------------------------------------
+clusters:
+  - name: default
+    description: default
+    tenant: default
+    scheme: http
+    api: 127.0.0.1
 
 # --- Global ----------------------------------------------------------------
 nameOverride: ""                  # Overrides chart name; leave empty to use default
@@ -279,8 +287,8 @@ web:
     INSTANCES_API_GROUP: "in-cloud.io"
     INSTANCES_RESOURCE_NAME: "instances"
     INSTANCES_VERSION: "v1alpha1"
-    LOGIN_URL: "/oauth2/sign_in"
-    LOGIN_USERNAME_FIELD: "name"
+    LOGIN_URL: "/oauth2/userinfo"
+    LOGIN_USERNAME_FIELD: "email"
     LOGOUT_URL: "/oauth2/sign_out"
     MARKETPLACE_GROUP: "front.in-cloud.io"
     MARKETPLACE_KIND: "MarketplacePanel"
