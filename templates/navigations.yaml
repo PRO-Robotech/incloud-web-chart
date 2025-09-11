@@ -1,3 +1,5 @@
+{{- $webResources := index .Values "incloud-web-resources" -}}
+{{- if not $webResources.enabled -}}
 ---
 apiVersion: front.in-cloud.io/v1alpha1
 kind: Navigation
@@ -15,3 +17,4 @@ spec:
   namespaces:
     clear: "/openapi-ui/{selectedCluster}/builtin-table/pods"
     change: "/openapi-ui/{selectedCluster}/{value}/builtin-table/pods"
+{{- end -}}
